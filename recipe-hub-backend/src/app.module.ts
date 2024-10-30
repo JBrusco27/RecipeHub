@@ -20,7 +20,7 @@ import { RecipeCategory } from './recipe/entities/recipe-category.entity';
       type: 'sqlite',
       database: 'RecipeHubDb.sqlite',
       entities: [User, Recipe, RecipeIngredient, RecipeStep, RecipeTime, Review, RecipeCategory],
-      synchronize: true, // Only on development
+      synchronize: false,
     }),
     RecipeModule,
     AuthModule,
