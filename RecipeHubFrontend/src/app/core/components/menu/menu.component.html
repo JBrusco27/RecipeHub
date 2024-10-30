@@ -1,0 +1,31 @@
+<div class="container">
+  <section class="top">
+    <span class="close" (click)="closeMenu()">X</span>
+    <nav class="top-nav">
+      @if(windowWidth() <= 768){
+        <form class="search-form" [formGroup]="searchForm">
+          <input mat-input formControlName="search" type="search" placeholder="Search Recipes">
+          <button mat-button (click)="search(); closeMenu()">
+            <mat-icon color="primary">search</mat-icon>
+          </button>
+        </form>
+      }
+      <button routerLink="/explore" [routerLinkActiveOptions]="{exact: true}" (click)="closeMenu()" routerLinkActive="route-active">Explore</button>
+      <button routerLink="/" [routerLinkActiveOptions]="{exact: true}" (click)="closeMenu()" routerLinkActive="route-active">Home</button>
+      @if(isLogged){
+        <button routerLink="/recipe/create" [routerLinkActiveOptions]="{exact: true}"  (click)="closeMenu()" routerLinkActive="route-active">Create Recipe</button>
+        <button routerLink="/profile" [routerLinkActiveOptions]="{exact: true}"  (click)="closeMenu()" routerLinkActive="route-active">Profile</button>
+      }
+    </nav>
+  </section>
+  <section class="bottom">
+    <nav>
+      @if (isLogged) {
+        <button (click)="closeMenu(); logout()" >Logout</button>
+      }@else{
+        <button routerLink="/signup" [routerLinkActiveOptions]="{exact: true}" (click)="closeMenu()" routerLinkActive="route-active">Sign Up</button>
+        <button routerLink="/login" [routerLinkActiveOptions]="{exact: true}" (click)="closeMenu()" routerLinkActive="route-active">Login</button>
+      }
+    </nav>
+  </section>
+</div>

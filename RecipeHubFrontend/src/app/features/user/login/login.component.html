@@ -1,0 +1,34 @@
+<section>
+  <div>
+    <h1>Welcome back</h1>
+  </div>
+  <div>
+    <h2>Log in</h2>
+    <p>Log in to get back with the best recipes!</p>
+    <div class="separator"></div>
+    <form [formGroup]="form" (ngSubmit)="login()">
+          <span>
+            <input type="email" formControlName="email" placeholder="Enter your email">
+            <span class="input-counter"></span>
+          </span>
+          @if (form.get('email')?.invalid && submitted) {
+            <div>
+              <p class="error">&VerticalSeparator; Email &bull; Not valid</p>
+            </div>
+          }
+          <span>
+            <input type="password" formControlName="password" placeholder="Enter your password">
+            <span class="input-counter" [style.color]="form.get('password')?.valid ? 'white' : '#de2d2d'" >{{passwordLimits[1]  - form.get('password')?.value?.length}}</span>
+          </span>
+          @if (form.get('password')?.invalid && submitted) {
+            <div>
+              <p class="error">&VerticalSeparator; Password &bull; Min. 8 characters</p>
+              <p class="error">&VerticalSeparator; Password &bull; Max. 64 characters</p>
+            </div>
+          }
+
+        <button class="login" type="submit">Login</button>
+    </form>
+    <p class="no-account">Don't have an account? <a routerLink="/signup">Sign up</a></p>
+  </div>
+</section>

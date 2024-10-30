@@ -1,0 +1,224 @@
+:host{
+  padding: 200px 10%;
+  display: block;
+}
+
+mat-stepper{
+  background-color: transparent !important;
+  border:2px solid #df4e00;
+  border-radius: 20px;
+  padding: 30px;
+  margin-top: 70px;
+}
+
+mat-stepper form section{
+  display: flex;
+  width: 100%;
+  // justify-content: center;
+  gap: 15px;
+}
+
+.general-info-inputs{
+  display: flex;
+  gap: 15px;
+  width: fit-content !important;
+}
+
+.general-info-inputs > div{
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.general-info-inputs > mat-form-field{
+  width: fit-content;
+}
+
+.general-info-inputs > div > div{
+  display: flex;
+  gap: 15px;
+}
+
+.general-info-inputs > mat-form-field:has(textarea){
+  width: 100%;
+}
+
+
+
+.ingredients-list, .time-list{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+}
+
+.ingredient-item, .time-item{
+  min-width: 40%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.ingredient-item > mat-icon, .time-item > mat-icon{
+  padding: 0 5px;
+  height: 100%;
+  width: fit-content;
+  align-content: center;
+  cursor: pointer;
+  overflow: initial;
+}
+
+.remove-item{
+  color: #df4e00;
+}
+
+.remove-item:hover{
+  color: #de2d2d;
+}
+
+.ingredient-item > input, .time-item > input{
+  border: 3px solid #df4e00;
+  width: 100%;
+  background-color: rgba(223, 78, 0, 0.0588235294);
+  border-radius: 10px;
+  text-align: center;
+  padding: 15px;
+}
+
+.add-ingredient{
+  // white-space: nowrap;
+  background-color: #7e2c00;
+  transition: all 0.2s ease-in-out;
+  border: none;
+  border-radius: 100px;
+  padding: 10px 20px !important;
+  margin-top: 30px;
+  cursor: pointer;
+}
+
+.time-measure{
+  border: 3px solid #df4e00;
+  padding: 15px;
+  border-radius: 10px;
+  background-color: rgba(223, 78, 0, 0.0588235294);
+}
+
+.time-measure{
+  background-color: #141414;
+  color: white;
+  margin: 10px;
+}
+
+.recipe-time-measure{
+  width: fit-content !important;
+}
+
+.step-info{
+  width: 100%;
+  // text-align: center;
+  display: flex;
+  flex-direction: column;
+  margin: 20px 20px 60px 0px;
+}
+
+.step-info p{
+  font-size: 16px;
+  color: #b69f93;
+  width: 70%;
+}
+
+.step-info h2{
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.step-controls-container{
+  display: flex;
+  width: 100%;
+  justify-content: right;
+  box-sizing: border-box;
+}
+
+.file-input {
+  display: none;
+}
+
+.file-upload{
+  padding: 20px;
+  border-radius: 15px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+
+.file-upload::before,
+.file-upload::after {
+  content: '';
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  border-radius: 5px;
+  border: 5px solid #df4e00;
+}
+
+.file-upload::before {
+  top: 0;
+  left: 0;
+  border-right: none;
+  border-bottom: none;
+}
+
+.file-upload::after {
+  bottom: 0;
+  right: 0;
+  border-left: none;
+  border-top: none;
+}
+
+@media (max-width: 768px) {
+  .step-info p{
+    width: 100%;
+  }
+
+  :host{
+    padding: 100px 5%;
+  }
+
+  mat-stepper form section{
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .general-info-inputs > div > div{
+    flex-direction: column;
+  }
+
+  mat-stepper{
+    padding: 30px 20px;
+  }
+
+  .ingredients-list, .time-list{
+    margin-bottom: 50px;
+  }
+
+  .ingredient-item, .time-item{
+    width: 100%;
+  }
+
+  .time-item{
+    flex-direction: column;
+    background-color: rgba(223, 78, 0, 0.0588235294);
+    padding: 10px;
+    border-radius: 10px;
+  }
+
+  .time-measure, .recipe-time-measure{
+    width: 100% !important;
+  }
+
+}

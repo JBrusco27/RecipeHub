@@ -1,0 +1,81 @@
+:host{
+  // padding: 200px 10%;
+  display: block;
+  position: initial;
+}
+
+.content{
+  padding: 150px 10% 150px 10%;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+
+.content > h1{
+  font-size: 25px;
+}
+
+.content > h1 > span{
+  color: #df4e00;
+}
+
+
+
+
+
+
+
+.content  > div:nth-child(2){
+  background-color: #df4e0018;
+  padding: 20px;
+  border-radius: 20px;
+  display: grid;
+  gap: 20px;
+  justify-content: center;
+  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+}
+
+.content  > div:nth-child(2) > a{
+  height: 310px;
+  min-width: 290px;
+  max-width: 290px;
+  display: flex;
+  flex-direction: column;
+  background-color: #1b0900;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.content  > div:nth-child(2) > a > div{
+  display: flex;
+  padding: 15px 10px;
+  flex-direction: column;
+  gap: 8px;
+
+}
+
+.content  > div:nth-child(2) > a > img{
+  border-radius: 5px;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+
+}
+
+.content  > div:nth-child(2) > a > div > h4{
+  font-weight: 700;
+  font-size: 14px;
+  color: #df4e00;
+  text-transform: uppercase;
+}
+
+.content  > div:nth-child(2) > a > div > h3{
+  font-weight: 700;
+  font-size: 20px;
+  color: white;
+}
+
+@media screen and (max-width: 768px) {
+  .content{
+    padding: 150px 5%;
+  }
+}

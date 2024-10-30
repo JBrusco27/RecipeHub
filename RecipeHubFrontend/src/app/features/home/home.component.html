@@ -1,0 +1,23 @@
+<section>
+  <div>
+    <h1>Your Dish, Your Desire</h1>
+    <h3>Easily Organize Your Culinary Creations</h3>
+    <button [routerLink]="'/explore'">Explore Recipes</button>
+  </div>
+</section>
+<section>
+  <h2>Categories</h2>
+  <div>
+    @for(category of categories; track $index) {
+      <a [routerLink]="'/category/' + category.recipe_category_id" >{{category.recipe_category_name}}</a>
+    }
+  </div>
+</section>
+<section>
+  <h2>Monthly Favorite Recipes</h2>
+  <div>
+    @for (recipe of items; track $index) {
+      <app-recipe-preview [recipe]="recipe"></app-recipe-preview> 
+    }
+  </div>
+</section>

@@ -1,0 +1,58 @@
+<div class="content">
+  <h1>Your <span>Profile</span></h1>
+  <form [formGroup]="form" (ngSubmit)="editUser()">
+    <div>
+      <div>
+        <mat-label class="label">
+          Name
+        </mat-label>
+        <span>
+          <input type="text" formControlName="user_name" placeholder="Enter your name">
+          <span class="input-counter" [style.color]="form.get('user_name')?.valid ? 'white' : '#de2d2d'" >{{nameLimits[1]  - form.get('user_name')?.value?.length}}</span>
+        </span>
+        @if (form.get('user_name')?.invalid && submitted) {
+          <div>
+            <p class="error">&VerticalSeparator; Name &bull; Min. 3 characters</p>
+            <p class="error">&VerticalSeparator; Name &bull; Max. 100 characters</p>
+          </div>
+        }
+      </div>
+
+      <div>
+        <mat-label class="label">
+          Last Name
+        </mat-label>
+        <span>
+          <input type="text" formControlName="user_lastname" placeholder="Enter your lastname">
+          <span class="input-counter" [style.color]="form.get('user_lastname')?.valid ? 'white' : '#de2d2d'" >{{lastnameLimits[1]  - form.get('user_lastname')?.value?.length}}</span>
+        </span>
+        @if (form.get('user_lastname')?.invalid && submitted) {
+          <div>
+            <p class="error">&VerticalSeparator; Lastname &bull; Min. 3 characters</p>
+            <p class="error">&VerticalSeparator; Lastname &bull; Max. 100 characters</p>
+          </div>
+        }
+      </div>
+    </div>
+        <mat-label class="label">
+          Email
+        </mat-label>
+        <span>
+          <input type="email" formControlName="user_email" placeholder="Enter your email">
+          <span class="input-counter"></span>
+        </span>
+        @if (form.get('user_email')?.invalid && submitted) {
+          <div>
+            <p class="error">&VerticalSeparator; Email &bull; Not valid</p>
+          </div>
+        }
+
+      <button class="signup" type="submit" [disabled]="!form.valid">Save</button>
+  </form>
+  <h1>Your <span>Recipes</span></h1>
+  <div>
+    @for (recipe of user?.recipes; track $index) {
+      <app-recipe-preview [recipe]="recipe"></app-recipe-preview>
+    }
+  </div>
+</div>

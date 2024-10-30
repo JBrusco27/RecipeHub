@@ -1,0 +1,30 @@
+<header [class.hidden]="isHidden">
+  <section>
+    <a routerLink="/">RecipeHub</a>
+    <span>
+      <form class="search-form" [formGroup]="searchForm">
+        <input mat-input formControlName="search" type="search" placeholder="Search Recipes" min="1">
+        <button mat-button (click)="search()">
+          <mat-icon color="primary">search</mat-icon>
+        </button>
+      </form>
+      <span class="header-spacer"></span>
+      <mat-icon class="menu" (click)="openMenu()">menu</mat-icon>
+    </span>
+  </section>
+  <section>
+    @if(!isLogged){
+      <button routerLink="/signup" routerLinkActive="active">Sign Up</button>
+      <button routerLink="/login" routerLinkActive="active">Login</button>
+    }@else{
+      <button>
+        <p>
+          {{user?.user_name}}
+          &nbsp;
+          {{user?.user_lastname}}
+        </p>
+        <img [src]="userProfileImageUrl" alt="Profile Image">
+      </button>
+    }
+  </section>
+</header>

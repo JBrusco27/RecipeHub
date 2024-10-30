@@ -1,0 +1,194 @@
+
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@use '@angular/material' as mat;
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat.core();
+
+$mat-primary: (
+  main: #df4e00,
+  lighter: #df4e00,
+  darker: #df4e00,
+  200: #df4e00,
+  contrast: (
+    main: #ffffff,
+    lighter: #000000,
+    darker: #ffffff,
+  )
+);
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$theme-primary: mat.define-palette($mat-primary, main, lighter,darker);
+$theme-accent: mat.define-palette(mat.$indigo-palette, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as "color" or "typography".
+
+$theme: mat.define-light-theme((
+  color: (
+    primary: $theme-primary,
+    accent: $theme-accent,
+  ),
+  typography: mat.define-typography-config(),
+  density: 0
+));
+
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include mat.all-component-themes($theme);
+
+/* You can add global styles to this file, and also import other style files */
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  border: none;
+  outline: none;
+  text-decoration: none;
+  font-family: "Open Sans", sans-serif;
+}
+
+html{
+color-scheme: dark;
+scroll-snap-type: y proximity;
+}
+
+body{
+background-color: #141414;
+}
+
+*::-webkit-scrollbar-track {
+  background: #141414;
+}
+
+*::-webkit-scrollbar{
+  width: 8px;
+  height: 8px;
+  background: #141414;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: #df4e00;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: #7e2c00;
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+// <-- Custom stepper dark style --> //
+
+app-create-recipe mat-stepper .mat-step-label{
+  color: white !important;
+}
+
+app-create-recipe mat-stepper .mat-stepper-horizontal-line{
+  border-top-color: #df4e00 !important;
+}
+
+app-create-recipe mat-stepper .mat-step-header{
+  background-color: #7e2c00;
+  border-radius: 100px;
+  padding: 15px;
+  height: fit-content !important;
+}
+
+app-create-recipe mat-stepper .mat-horizontal-content-container{
+  padding: 0 !important;
+}
+
+app-create-recipe mat-stepper .mat-horizontal-stepper-wrapper{
+  gap: 20px;
+}
+
+app-create-recipe mat-stepper .mdc-text-field--filled{
+  background-color: rgba(223, 78, 0, 0.0588235294) !important;
+  color: white !important;
+  // border-bottom: 2px solid #df4e00;
+}
+
+app-create-recipe mat-stepper .mdc-text-field__input{
+  color: white !important;
+}
+
+app-create-recipe mat-stepper .mdc-text-field__input::placeholder{
+  color: #7e2c00 !important;
+}
+
+app-create-recipe mat-stepper mat-form-field mat-label{
+  color: white !important;
+}
+
+app-create-recipe mat-stepper mat-form-field .mdc-text-field--filled:not(.mdc-text-field--disabled) .mdc-line-ripple::before{
+  border-bottom-color:#df4e00;
+}
+
+app-create-recipe mat-stepper .mat-form-field-invalid mat-label{
+  color: #de2d2d !important;
+}
+
+// app-create-recipe mat-stepper mat-form-field mat-label{
+//   color: white !important;
+// }
+
+// app-create-recipe mat-stepper mat-form-field .mdc-floating-label--required:not(.mdc-floating-label--hide-required-marker)::after{
+//   color: #df4e00 !important;
+// }
+
+app-create-recipe mat-stepper .mat-mdc-button{
+  color: white !important;
+  border-radius: 100px !important;
+  border: 2px solid #7e2c00;
+  margin-right: 5px;
+}
+
+app-create-recipe mat-stepper .mat-mdc-button:hover{
+  background-color: rgba(223, 78, 0, 0.0588235294);
+}
+
+@media (max-width: 768px) {
+
+  app-create-recipe .mat-vertical-content-container{
+    margin-left: 15px !important;
+  }
+
+  app-create-recipe .mat-vertical-content {
+    padding: 0 0 20px 0 !important;
+  }
+
+  app-create-recipe .mat-step-header{
+    margin-bottom: 10px;
+  }
+
+}
+
+// <-- Custom stepper dark style --> //
+
+
+// <-- Custom dialog --> //
+
+.menu-panel mat-dialog-container{
+  width: min(100vw, 50vh) !important;
+  height: 80vh !important;
+  overflow: hidden;
+}
+
+
+.mat-mdc-dialog-container .mdc-dialog__surface{
+  background-color: transparent !important;
+}
+
+// <-- Custom dialog --> //

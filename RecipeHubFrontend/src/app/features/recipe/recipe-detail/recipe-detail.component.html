@@ -1,0 +1,130 @@
+<img src="{{recipePhotoUrl}}" alt="Recipe Photo">
+<div class="content">
+  <section class="general-info">
+    <p class="category">
+      category
+      <mat-icon>chevron_right</mat-icon>
+      <span [routerLink]="'/category/'+recipe?.recipe_category?.recipe_category_id">
+        {{recipe?.recipe_category?.recipe_category_name}}
+      </span>
+    </p>
+    <h1>{{recipe?.recipe_title}}</h1>
+    <span class="stars">
+      <span>
+        @for (star of utilService.getStars(utilService.getAverageRating(recipe)); track $index) {
+          <img [src]='star' alt="star icon">
+        }
+      </span>
+      <p>{{utilService.getAverageRating(recipe).toFixed(1)}} ({{this.recipe?.recipe_review.length}})</p>
+    </span>
+    <p class="description">{{recipe?.recipe_description}}</p>
+    <p class="submitted-by">Submitted by &nbsp;<span>{{recipe?.user?.user_name}} {{recipe?.user?.user_lastname}}</span><span>{{recipe?.recipe_created_at | date:'MMMM dd, yyyy'}}</span></p>
+    <span class="time">
+      <div>
+        <mat-icon color="primary">timer</mat-icon>
+        <span>{{getTotalTime()}}</span>
+      </div>
+      <div>
+        <mat-icon color="primary">restaurant</mat-icon>
+        <span>{{recipe?.recipe_servings}} Servings</span>
+      </div>
+    </span>
+  </section>
+  <section class="ingredients">
+    <h1>Ingredients</h1>
+    <ul class="ingredient-list">
+      @for (ingredient of recipe?.recipe_ingredient; track $index){
+        <li>{{ingredient.recipe_ingredient_info}}</li>
+      }
+    </ul>
+  </section>
+  <section class="directions">
+    <h1>Directions</h1>
+    <div>
+      @for (item of getOrderedSteps(); track $index){
+        <span>
+          <h3>Step <span>{{$index + 1}}</span></h3>
+          <p>{{item.recipe_step_info}}</p>
+        </span>
+      }
+    </div>
+  </section>
+  <section class="reviews">
+    <h1>Reviews</h1>
+    <div>
+      <span>
+        @if(isLogged){
+          <img [src]="userProfileImageUrl" alt="User Profile Image">
+          <p>{{user?.user_name}} {{user?.user_lastname}}</p>
+        }@else {
+          <p>Not logged?</p>
+          <button routerLink="/signup" class="signupBtn authBtn" routerLinkActive="active">Sign Up</button>
+          <button routerLink="/login" class="loginBtn authBtn" routerLinkActive="active">Login</button>
+        }
+      </span>
+      @if(canReview){
+      <span>
+          <div>
+            <p>Your Rating <span>(required)</span></p>
+            <form [formGroup]="formGroup" (submit)="submitReview()">
+              <p-rating formControlName="review_rating" [stars]="5" [cancel]="false" [readonly]="!isLogged">
+                <ng-template pTemplate="onicon">
+                  <img
+                      src="../../../../assets/rating/star_1.svg"
+                      width="40px"
+                      height="40px" />
+                </ng-template>
+                <ng-template pTemplate="officon">
+                    <img
+                        src="../../../../assets/rating/star_0.svg"
+                        width="40px"
+                        height="40px" />
+                </ng-template>
+              </p-rating>
+            </form>
+          </div>
+          <div>
+            <p>Your Review <span>(optional)</span></p>
+            <form [formGroup]="formGroup" (submit)="submitReview()">
+              <textarea formControlName="review_comment" class="review-textarea" placeholder="What do you think about this recipe?" rows="5" minlength="0" maxlength="1000"></textarea>
+              <button class="review-submit" type="submit" [disabled]="!isLogged || !formGroup.valid || getUserAlreadyReviewed()">Submit</button>
+            </form>
+          </div>
+        </span>
+      }
+    </div>
+    <div class="reviews-container">
+      <div>
+        <hr>
+        <span>
+          {{this.recipe?.recipe_review?.length}} reviews
+        </span>
+        <span>
+        </span>
+        <hr>
+      </div>
+      <div>
+        @for(review of this.recipe?.recipe_review; track $index){
+          <div class="review-item">
+            <span>
+              <img [src]="'http://localhost:3000/user/user-profile-image/' + review?.user?.user_profile_image" alt="user profile image">
+              <p>{{review?.user?.user_name}} {{review?.user?.user_lastname}}</p>
+            </span>
+            <span class="stars">
+              <span>
+                @for (star of utilService.getStars(review.review_rating); track $index) {
+                  <img [src]='star' alt="star icon">
+                }
+              </span>
+              <p>{{review.review_created_at | date:'MMMM dd, yyyy'}}</p>
+            </span>
+            <p>
+              {{review.review_comment}}
+            </p>
+
+          </div>
+        }
+      </div>
+    </div>
+  </section>
+</div>

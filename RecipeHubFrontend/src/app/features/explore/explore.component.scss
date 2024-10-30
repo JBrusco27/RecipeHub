@@ -1,0 +1,84 @@
+:host{
+  display: block;
+  position: initial;
+}
+
+.content{
+  padding: 200px 10%;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+
+.content > h2{
+  text-align: center;
+  font-weight: 700;
+  font-size: 40px;
+}
+
+.content > div{
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+
+.category-container{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+}
+
+.category-container > span > h1{
+  font-weight: 700;
+  font-size: 35px;
+  color: #df4e00;
+}
+
+.category-container > span{
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.category-container > span > a{
+  color: white;
+  border: 2px solid #df4e00;
+  border-radius:100px;
+  padding: 5px 5px 5px 15px;
+  height: fit-content;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.category-container > span > a > mat-icon{
+  font-size: 20px;
+  color: #df4e00;
+  border-radius: 100px;
+  border: 2px solid #df4e00;
+  display: flex;
+  padding: 5px;
+  align-items: center;
+  justify-content: center;
+}
+
+.category-container > div{
+  display: flex;
+  gap: 20px;
+  width: 100%;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  background-color: #df4e000f;
+  padding: 15px;
+  border-radius: 35px;
+}
+
+@media screen and (max-width: 768px) {
+  .content{
+    padding: 200px 5%;
+  }
+}
+
+

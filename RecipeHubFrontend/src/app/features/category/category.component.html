@@ -1,0 +1,8 @@
+<div class="content">
+  <h1><span>&bull; {{categoryName}} &bull;</span></h1>
+  <div>
+    @for (recipe of items; track $index) {
+      <app-recipe-preview [recipe]="recipe"></app-recipe-preview>
+    }
+  </div>
+</div>

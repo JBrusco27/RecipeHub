@@ -1,0 +1,139 @@
+<div class="content">
+  <h1>New <span style="color: #df4e00">Recipe</span></h1>
+  <span class="step-info">
+    <p>Welcome to the recipe creation section! Here, you'll be guided through multiple steps to create your own delicious recipe. Make sure to fill out each section carefully to capture all the essential details of your dish.</p>
+  </span>
+  <mat-stepper [linear]="false" #stepper [orientation]="windowWidth() <= 768 ? 'vertical' : 'horizontal'" color="primary">
+    <mat-step [stepControl]="generalInfoForm">
+      <form [formGroup]="generalInfoForm">
+        <ng-template matStepLabel>General information</ng-template>
+        <span class="step-info">
+          <h2>General information</h2>
+          <p>In this step, provide the basic information about your recipe, including its title, a brief description, and the number of servings it yields.</p>
+        </span>
+        <section class="general-info-inputs">
+          <div>
+            <div>
+              <mat-form-field>
+                <mat-label>Title</mat-label>
+                <input matInput type="text" placeholder="Your Recipe's title" formControlName="recipe_title" maxlength="255" required>
+              </mat-form-field>
+              <mat-form-field>
+                <mat-label>Servings</mat-label>
+                <input matInput type="mumber" placeholder="Your Recipe's servings" formControlName="recipe_servings" max="100" min="1" required>
+              </mat-form-field>
+            </div>
+              <select class="time-measure" formControlName="recipe_category">
+                <option value="" selected disabled>Select a category</option>
+
+                @for (category of categories; track $index) {
+                  <option value="{{category.recipe_category_id}}">{{category.recipe_category_name}}</option>
+                }
+              </select>
+            <mat-form-field>
+              <mat-label>Description</mat-label>
+              <textarea matInput placeholder="Your Recipe's description" formControlName="recipe_description" maxlength="1000" required></textarea>
+            </mat-form-field>
+          </div>
+
+
+
+          <input type="file" class="file-input" requiredFileType="image/*" (change)="onFileSelected($event)" #fileUpload>
+
+        <div class="file-upload">
+          <button mat-mini-fab color="primary" class="upload-btn"
+            (click)="fileUpload.click()">
+              <mat-icon>attach_file</mat-icon>
+          </button>
+          {{fileName || "No file uploaded yet."}}
+        </div>
+
+
+
+        </section>
+        <div class="step-controls-container">
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="generalInfoForm" label="Ingredients">
+      <form [formGroup]="generalInfoForm">
+        <span class="step-info">
+          <h2>Ingredients</h2>
+          <p>List all the ingredients needed for your recipe here. You can add as many ingredients as necessary, specifying each one's information as  quantity (i.e. cups, tablespoons) and any special preparation (i.e. sifted, softened, chopped). Use optional headers to organize the different parts of the recipe (i.e. Cake, Frosting, Dressing).</p>
+        </span>
+        <section>
+          <div formArrayName="recipe_ingredients" cdkDropList class="ingredients-list" (cdkDropListDropped)="dropIngredient($event)" >
+            @for (ingredient of recipeIngredients.controls; track ingredient; let i = $index ) {
+              <!-- <div class="ingredient-item" cdkDrag>{{ingredient}}</div> -->
+               <div cdkDrag class="ingredient-item" [formGroupName]="i">
+                <mat-icon>drag_indicator</mat-icon>
+                <input type="text" placeholder="Ingredient's info" formControlName="recipe_ingredient_info" required minlength="3" maxlength="255">
+                <mat-icon class="remove-item" (click)="removeIngredient(i)">remove_circle_outline</mat-icon>
+               </div>
+            }
+            <button class="add-ingredient" (click)="addIngredient()">Add ingredient</button>
+          </div>
+        </section>
+        <div class="step-controls-container">
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step label="Steps">
+      <form [formGroup]="generalInfoForm">
+        <span class="step-info">
+          <h2>Recipe steps</h2>
+          <p>Outline the step-by-step process of preparing your recipe. Ensure that each step is clear and easy to follow. </p>
+        </span>
+        <section>
+          <div formArrayName="recipe_steps" cdkDropList class="ingredients-list" (cdkDropListDropped)="dropStep($event)">
+            @for (step of recipeSteps.controls; track step; let i = $index ) {
+               <div cdkDrag class="ingredient-item" [formGroupName]="i">
+                <mat-icon>drag_indicator</mat-icon>
+                <input type="text" placeholder="Step's info" formControlName="recipe_step_info" required minlength="3" maxlength="1000">
+                <mat-icon class="remove-item" (click)="removeStep(i)">remove_circle_outline</mat-icon>
+               </div>
+            }
+            <button class="add-ingredient" (click)="addStep()">Add step</button>
+          </div>
+        </section>
+        <div class="step-controls-container">
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step label="Times">
+      <form [formGroup]="generalInfoForm">
+        <span class="step-info">
+          <h2>Preparation Times</h2>
+          <p>Specify the preparation and cooking times for your recipe. This helps others plan their cooking effectively.</p>
+        </span>
+        <section>
+          <div formArrayName="recipe_times" cdkDropList class="time-list">
+            @for (time of recipeTimes.controls; track time; let i = $index ) {
+               <div class="time-item" [formGroupName]="i">
+                <input type="text" placeholder="Time" formControlName="recipe_time_name" required minlength="3" maxlength="100">
+                <input type="number" placeholder="0" class="recipe-time-measure" formControlName="recipe_time_amount" required min="1">
+                <select class="time-measure" formControlName="recipe_time_measure">
+                  <option selected disabled value="">Select a measure</option>
+                  @for (measure of recipeTimeMeasureOption; track measure) {
+                    <option value="{{measure}}">{{measure}}</option>
+                  }
+                </select>
+                <mat-icon class="remove-item" (click)="removeTime(i)">remove_circle_outline</mat-icon>
+               </div>
+            }
+            <button class="add-ingredient" (click)="addTime()">Add time</button>
+          </div>
+        </section>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button (click)="createRecipe()">Submit</button>
+        </div>
+      </form>
+    </mat-step>
+  </mat-stepper>
+</div>

@@ -1,0 +1,20 @@
+<section class="content">
+  <h2>Explore all the categories</h2>
+  <div>
+    @for(category of categories; track $index) {
+      @if(recipesByCategory[category.recipe_category_id] && recipesByCategory[category.recipe_category_id].length > 0){
+        <div class="category-container">
+          <span>
+            <h1 [routerLink]="'/category/'+ category?.recipe_category_id">&bull; {{category.recipe_category_name}} &bull;</h1>
+            <a [routerLink]="'/category/'+ category?.recipe_category_id">See more <mat-icon>arrow_right_alt</mat-icon></a>
+          </span>
+          <div>
+            @for (recipe of recipesByCategory[category.recipe_category_id]; track $index) {
+              <app-recipe-preview [recipe]="recipe"></app-recipe-preview>
+            }
+          </div>
+        </div>
+      }
+    }
+  </div>
+</section>

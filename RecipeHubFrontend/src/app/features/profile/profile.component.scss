@@ -1,0 +1,139 @@
+:host{
+  display: block;
+  position: initial;
+}
+
+.content{
+  padding: 200px 10%;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+
+.content form{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.content form > span, .content form > div:first-child > div > span{
+  display: flex;
+}
+
+.content form > span > input, .content form > div:first-child > div > span > input{
+  width: 100%;
+  padding: 15px 10px;
+  background-color: rgba(223, 78, 0, 0.0588235294);
+  border-bottom: 3px solid #df4e00;
+}
+
+.content form > span > input:focus + .input-counter, .content form > div:first-child > div > span > input:focus + .input-counter{
+  width: 40px;
+}
+
+.content form > span > input::placeholder, .content form > div:first-child > div > span > input::placeholder{
+  color: rgb(195, 195, 195);
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.input-counter{
+  width: 0;
+  display: flex;
+  overflow: hidden;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-weight: 900;
+  font-size: 18px;
+  margin-left: 10px;
+  border-radius: 10px;
+  transition: all .3s ease-in-out;
+}
+
+.signup{
+  width: 100%;
+  cursor: pointer;
+  font-size: 16px;
+  float: right;
+  font-weight: 700;
+  margin-top: 15px;
+  text-transform: uppercase;
+  border-radius: 5px;
+  padding: 12px 57px;
+  background-color: #df4e00;
+  color: white;
+  transition: all .3s ease-in-out;
+  place-self: center;
+  }
+
+  .signup:hover{
+    border-radius: 100px;
+    width: 90%;
+    background-color: rgba(223, 78, 0, 0.0588235294);
+  }
+
+  .signup:disabled{
+    background-color: #cccccc77;
+    color: white;
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+
+  .error{
+    color: #e84435;
+    margin-bottom: 5px;
+  }
+
+  .content form > div:first-child{
+    display: flex;
+    gap: 20px;
+  }
+
+  .content form > div:first-child > div{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 5px;
+  }
+
+  .content form .label{
+    font-weight: 700;
+  }
+
+  .content form > div:first-child > div > span > input{
+    margin-bottom: 10px;
+  }
+
+
+
+
+
+.content > h1{
+  font-size: 25px;
+}
+
+.content > h1 > span{
+  color: #df4e00;
+}
+
+.content  > div{
+  background-color: #df4e0018;
+  padding: 20px;
+  border-radius: 20px;
+  display: grid;
+  gap: 20px;
+  justify-content: center;
+  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+}
+
+@media screen and (max-width: 768px) {
+  .content{
+    padding: 200px 5%;
+  }
+
+  .content form > div:first-child{
+    flex-direction: column;
+  }
+
+}

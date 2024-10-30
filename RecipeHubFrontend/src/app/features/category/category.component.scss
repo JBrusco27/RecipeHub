@@ -1,0 +1,39 @@
+:host{
+  display: block;
+  position: initial;
+}
+
+.content{
+  padding: 150px 10% 150px 10%;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+
+.content > h1{
+  text-align: center;
+  font-weight: 700;
+  font-size: 40px;
+}
+
+.content > h1 > span{
+  color: #df4e00;
+}
+
+
+
+.content  > div:nth-child(2){
+  background-color: #df4e0018;
+  padding: 20px;
+  border-radius: 20px;
+  display: grid;
+  gap: 20px;
+  justify-content: center;
+  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+}
+
+@media screen and (max-width: 768px) {
+  .content{
+    padding: 200px 5%;
+  }
+}

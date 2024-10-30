@@ -1,0 +1,255 @@
+
+section{
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+}
+
+section:before{
+  content: '';
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-image: url('https://static.vecteezy.com/system/resources/previews/024/731/716/large_2x/healthy-food-concept-fresh-vegetables-fruits-and-legumes-on-black-background-generative-ai-free-photo.jpeg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position:right ;
+  filter: brightness(0.8);
+  z-index: -1;
+}
+
+section > div{
+  flex-basis: 50%;
+}
+
+section > div:nth-child(1){
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+section > div:nth-child(1) > h1{
+  color: white;
+  background-color: #141414;
+  padding: 70px 10%;
+  width: 100%;
+  font-size: 45px;
+  text-align: center;
+  width: 100%;
+  font-family: 'Times New Roman', Times, serif;
+  position: relative;
+}
+
+section > div:nth-child(1) > h1:before,section > div:nth-child(1) > h1:after{
+  content: '';
+  position: absolute;
+  height: 50px;
+  width: 50px;
+  background-color: #141414;
+  right: 0;
+}
+
+
+section > div:nth-child(1) > h1:before{
+  top: -50px;
+  mask-image: radial-gradient(farthest-corner at top left, transparent 70%, black 71%);
+  -webkit-mask-image: radial-gradient(farthest-corner at top left, transparent 70%, black 71%);
+}
+section > div:nth-child(1) > h1:after{
+  bottom: -50px;
+  mask-image: radial-gradient(farthest-corner at bottom left, transparent 70%, black 71%);
+  -webkit-mask-image: radial-gradient(farthest-corner at bottom left, transparent 70%, black 71%);
+}
+
+
+
+
+
+section > div:nth-child(2){
+  padding: 20px 13%;
+  background-color: #141414;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 10px;
+}
+
+section > div:nth-child(2) > h2{
+  font-size: 40px;
+  color: #df4e00;
+}
+
+.separator{
+  width: 100%;
+  border-radius: 100px;
+  background-color: white;
+}
+
+section > div:nth-child(2) > form{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+section > div:nth-child(2) > form > span, section > div:nth-child(2) > form > div:first-child > div > span{
+  display: flex;
+}
+
+.input-counter{
+  height: 100%;
+  width: 0;
+  display: flex;
+  overflow: hidden;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-weight: 900;
+  font-size: 18px;
+  margin-left: 10px;
+  border-radius: 10px;
+  transition: all .3s ease-in-out;
+}
+
+section > div:nth-child(2) > form > span > input, section > div:nth-child(2) > form > div:first-child > div > span > input{
+  width: 100%;
+  padding: 15px 10px;
+  background-color: rgba(223, 78, 0, 0.0588235294);
+  border-bottom: 3px solid #df4e00;
+}
+
+section > div:nth-child(2) > form > span > input:focus + .input-counter, section > div:nth-child(2) > form > div:first-child > div > span > input:focus + .input-counter{
+  width: 40px;
+}
+
+section > div:nth-child(2) > form > span > input::placeholder, section > div:nth-child(2) > form > div:first-child > div > span > input::placeholder{
+  color: rgb(195, 195, 195);
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.signup{
+  width: 100%;
+  cursor: pointer;
+  font-size: 16px;
+  float: right;
+  font-weight: 700;
+  margin-top: 15px;
+  text-transform: uppercase;
+  border-radius: 5px;
+  padding: 12px 57px;
+  background-color: #df4e00;
+  color: white;
+  transition: all .3s ease-in-out;
+  place-self: center;
+  }
+
+  .signup:hover{
+    border-radius: 100px;
+    width: 90%;
+    background-color: rgba(223, 78, 0, 0.0588235294);
+  }
+
+.no-account{
+  font-size: 16px;
+  text-align: center;
+  width: 100%;
+  margin-top: 15px;
+}
+
+.no-account a{
+  color: #df4e00;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.error{
+  color: #e84435;
+  margin-bottom: 5px;
+}
+
+section > div:nth-child(2) > form >  div:first-child{
+  display: flex;
+  gap: 20px;
+}
+
+section > div:nth-child(2) > form >  div:first-child > div{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+section > div:nth-child(2) > form >  div:first-child > div > span > input{
+  margin-bottom: 10px;
+}
+
+.file-input {
+  display: none;
+}
+
+.file-upload{
+  width: 100%;
+  padding: 20px;
+  border-radius: 15px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+
+.file-upload::before,
+.file-upload::after {
+  content: '';
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  border-radius: 5px;
+  border: 5px solid #df4e00;
+}
+
+.file-upload::before {
+  top: 0;
+  left: 0;
+  border-right: none;
+  border-bottom: none;
+}
+
+.file-upload::after {
+  bottom: 0;
+  right: 0;
+  border-left: none;
+  border-top: none;
+}
+
+
+@media screen and (max-width: 1400px){
+
+  section > div:nth-child(2){
+    padding: 20px 5%;
+  }
+
+  section > div:nth-child(1) > h1{
+    font-size: 35px;
+  }
+
+}
+
+@media screen and (max-width: 1000px){
+
+  section > div:nth-child(1){
+    display: none;
+  }
+
+  section > div{
+    flex-basis: 100%;
+  }
+
+}
+
+@media screen and (max-width: 768px){
+  section > div:nth-child(2){
+    padding: 20px 5%;
+  }
+}

@@ -1,0 +1,12 @@
+<a [routerLink]="'/recipe/'+ recipe?.recipe_id">
+  <img src="{{recipePhotoUrl}}" alt="item thumbnail">
+  <div>
+    <h4>{{recipe?.recipe_category.recipe_category_name}}</h4>
+    <h3>{{recipe?.recipe_title}}</h3>
+    <span>
+      @for (star of utilService.getStars(utilService.getAverageRating(recipe)); track $index) {
+        <img [src]='star' alt="star icon">
+      }
+    </span>
+  </div>
+</a>

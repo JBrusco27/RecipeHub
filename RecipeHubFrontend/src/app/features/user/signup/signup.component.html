@@ -1,0 +1,75 @@
+<section>
+  <div>
+    <h1>Welcome to <span style="color: #df4e00">RecipeHub</span></h1>
+  </div>
+  <div>
+    <h2>Sign up</h2>
+    <p>Sign up to save recipes, review and create new ones!</p>
+    <div class="separator"></div>
+    <form [formGroup]="form" (ngSubmit)="signup()">
+      <div>
+
+        <div>
+          <span>
+            <input type="text" formControlName="user_name" placeholder="Enter your name">
+            <span class="input-counter" [style.color]="form.get('user_name')?.valid ? 'white' : '#de2d2d'" >{{nameLimits[1]  - form.get('user_name')?.value?.length}}</span>
+          </span>
+          @if (form.get('user_name')?.invalid && submitted) {
+            <div>
+              <p class="error">&VerticalSeparator; Name &bull; Min. 3 characters</p>
+              <p class="error">&VerticalSeparator; Name &bull; Max. 100 characters</p>
+            </div>
+          }
+        </div>
+
+        <div>
+          <span>
+            <input type="text" formControlName="user_lastname" placeholder="Enter your lastname">
+            <span class="input-counter" [style.color]="form.get('user_lastname')?.valid ? 'white' : '#de2d2d'" >{{lastnameLimits[1]  - form.get('user_lastname')?.value?.length}}</span>
+          </span>
+          @if (form.get('user_lastname')?.invalid && submitted) {
+            <div>
+              <p class="error">&VerticalSeparator; Lastname &bull; Min. 3 characters</p>
+              <p class="error">&VerticalSeparator; Lastname &bull; Max. 100 characters</p>
+            </div>
+          }
+        </div>
+      </div>
+
+          <span>
+            <input type="email" formControlName="user_email" placeholder="Enter your email">
+            <span class="input-counter"></span>
+          </span>
+          @if (form.get('user_email')?.invalid && submitted) {
+            <div>
+              <p class="error">&VerticalSeparator; Email &bull; Not valid</p>
+            </div>
+          }
+
+          <span>
+            <input type="password" formControlName="user_password" placeholder="Enter your password">
+            <span class="input-counter" [style.color]="form.get('user_password')?.valid ? 'white' : '#de2d2d'" >{{passwordLimits[1]  - form.get('user_password')?.value?.length}}</span>
+          </span>
+          @if (form.get('user_password')?.invalid && submitted) {
+            <div>
+              <p class="error">&VerticalSeparator; Password &bull; Min. 8 characters</p>
+              <p class="error">&VerticalSeparator; Password &bull; Max. 64 characters</p>
+            </div>
+          }
+
+          <span>
+            <input type="file" class="file-input" requiredFileType="image/*" (change)="onFileSelected($event)" #fileUpload>
+
+            <div class="file-upload">
+              <button mat-mini-fab color="primary" type="button" class="upload-btn"
+                (click)="fileUpload.click()">
+                  <mat-icon>attach_file</mat-icon>
+              </button>
+              {{fileName || "Upload your profile photo"}}
+            </div>
+          </span>
+        <button class="signup" type="submit">Sign up</button>
+    </form>
+    <p class="no-account">Don't have an account? <a routerLink="/login">Log In</a></p>
+  </div>
+</section>
